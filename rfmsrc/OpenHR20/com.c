@@ -270,33 +270,34 @@ void COM_init(void) {
  *  \note
  ******************************************************************************/
 void COM_print_debug(uint8_t type) {
-    print_s_p(PSTR("D: "));
-    print_hexXX(RTC_GetDayOfWeek()+0xd0);
+    if (type>0) {
+//    	print_s_p(PSTR("D:"));
+    	print_hexXX(RTC_GetDayOfWeek()+0xd0);
 	COM_putchar(' ');
 	print_decXX(RTC_GetDay());
-	COM_putchar('.');
+//	COM_putchar('.');
 	print_decXX(RTC_GetMonth());
-	COM_putchar('.');
+//	COM_putchar('.');
 	print_decXX(RTC_GetYearYY());
 	COM_putchar(' ');
 	print_decXX(RTC_GetHour());
-	COM_putchar(':');
+//	COM_putchar(':');
 	print_decXX(RTC_GetMinute());
-	COM_putchar(':');
+//	COM_putchar(':');
 	print_decXX(RTC_GetSecond());
 	COM_putchar(' ');
-    COM_putchar((CTL_mode_auto)?(CTL_test_auto()?'A':'-'):'M');
-	print_s_p(PSTR(" V: "));
+    	COM_putchar((CTL_mode_auto)?(CTL_test_auto()?'A':'-'):'M');
+//	print_s_p(PSTR(" V: "));
 	print_decXX(valve_wanted);
-	print_s_p(PSTR(" I: "));
+//	print_s_p(PSTR(" I: "));
 	print_decXXXX(temp_average);
-	print_s_p(PSTR(" S: "));
+//	print_s_p(PSTR(" S: "));
 	if (CTL_temp_wanted_last>TEMP_MAX+1) {
 		print_s_p(PSTR("BOOT"));
 	} else {
 		print_decXXXX(calc_temp(CTL_temp_wanted_last));
 	}
-	print_s_p(PSTR(" B: "));
+//	print_s_p(PSTR(" B: "));
 	print_decXXXX(bat_average);
 #if DEBUG_PRINT_I_SUM
 	print_s_p(PSTR(" Is: "));
@@ -309,13 +310,13 @@ void COM_print_debug(uint8_t type) {
 	print_s_p(PSTR(" Ie: ")); //jr
 	print_hexXX(CTL_creditExpiration);
 #endif
-    if (CTL_error!=0) {
-		print_s_p(PSTR(" E:"));
-        print_hexXX(CTL_error);
-    }                   
-	if (type>0) {
-		print_s_p(PSTR(" X"));
-	}
+    	if (CTL_error!=0) {
+//		print_s_p(PSTR(" E:"));
+        	print_hexXX(CTL_error);
+    	}                   
+//	if (type>0) {
+//		print_s_p(PSTR(" X"));
+//	}
 	if (mode_window()) {
 		print_s_p(PSTR(" W"));
 	}
@@ -348,7 +349,7 @@ void COM_print_debug(uint8_t type) {
 	wireless_async=false;
 	rfm_start_tx();
 #endif
-    
+    }    
 }
 
 /*! 
