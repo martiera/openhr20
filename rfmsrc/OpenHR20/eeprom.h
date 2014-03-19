@@ -255,7 +255,7 @@ uint8_t EEPROM ee_config[][4] ={  // must be alligned to 4 bytes
   /* 27 */  {50,         50,        7,      255},   //!< window_close_detection_diff; reshold for window open/close detection unit is 0.01C
   /* 28 */  {8,           8,  1, AVGS_BUFFER_LEN},  //!< window_open_detection_time unit 15sec = 1/4min
   /* 29 */  {8,           8,  1, AVGS_BUFFER_LEN},  //!< window_close_detection_time unit 15sec = 1/4min
-  /* 2a */  {90,         90,        2,      255},   //!< window_open_timeout
+  /* 2a */  {30,         30,        2,      255},   //!< window_open_timeout
 #endif
 #if BOOST_CONTROLER_AFTER_CHANGE
   /*    */  {50,           0,        0,      255},   //!< temp_boost_setpoint_diff, unit 0,01°C
