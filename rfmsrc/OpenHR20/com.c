@@ -288,16 +288,20 @@ void COM_print_debug(uint8_t type) {
 	COM_putchar(' ');
     	COM_putchar((CTL_mode_auto)?(CTL_test_auto()?'A':'-'):'M');
 //	print_s_p(PSTR(" V: "));
+	COM_putchar(' ');
 	print_decXX(valve_wanted);
 //	print_s_p(PSTR(" I: "));
+	COM_putchar(' ');
 	print_decXXXX(temp_average);
 //	print_s_p(PSTR(" S: "));
+	COM_putchar(' ');
 	if (CTL_temp_wanted_last>TEMP_MAX+1) {
 		print_s_p(PSTR("BOOT"));
 	} else {
 		print_decXXXX(calc_temp(CTL_temp_wanted_last));
 	}
 //	print_s_p(PSTR(" B: "));
+	COM_putchar(' ');
 	print_decXXXX(bat_average);
 #if DEBUG_PRINT_I_SUM
 	print_s_p(PSTR(" Is: "));
