@@ -270,6 +270,41 @@ void COM_init(void) {
  *  \note
  ******************************************************************************/
 void COM_print_debug(uint8_t type) {
+    if (type==255) {
+	print_decXXXX(temp_average);
+	COM_putchar(';');
+	print_decXXXX(bat_average);
+	COM_putchar(';');
+    	COM_putchar((CTL_mode_auto)?(CTL_test_auto()?'A':'-'):'M');
+	COM_putchar(';');
+	if (CTL_temp_wanted_last>TEMP_MAX+1) {
+		print_s_p(PSTR("BOOT"));
+	} else {
+		print_decXXXX(calc_temp(CTL_temp_wanted_last));
+	}
+	COM_putchar(';');
+	print_decXX(RTC_GetHour());
+//	COM_putchar(':');
+	print_decXX(RTC_GetMinute());
+//	COM_putchar(':');
+	print_decXX(RTC_GetSecond());
+	if (mode_window()) {
+		COM_putchar(';');
+		print_s_p(PSTR("W"));
+	}
+	if (menu_locked) {
+		COM_putchar(';');
+		print_s_p(PSTR("L"));
+	}
+    	if (CTL_error!=0) {
+		COM_putchar(';');
+//		print_s_p(PSTR(" E:"));
+        	print_hexXX(CTL_error);
+    	}                   
+	COM_putchar('\n');
+	COM_flush();
+    }
+    else
     if (type>0) {
 //    	print_s_p(PSTR("D:"));
     	print_hexXX(RTC_GetDayOfWeek()+0xd0);
@@ -440,6 +475,10 @@ void COM_commad_parse (void) {
 #if ENABLE_LOCAL_COMMANDS
 		case 'D':
 			if (COM_getchar()=='\n') COM_print_debug(1);
+			c='\0';
+			break;
+		case 'Q':
+			if (COM_getchar()=='\n') COM_print_debug(255);
 			c='\0';
 			break;
 		case 'T':
