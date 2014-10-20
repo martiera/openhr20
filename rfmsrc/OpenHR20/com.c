@@ -270,6 +270,13 @@ void COM_init(void) {
  *  \note
  ******************************************************************************/
 void COM_print_debug(uint8_t type) {
+    if (type==100) {
+	COM_putchar('O');
+	COM_putchar('K');
+	COM_putchar('\n');
+	COM_flush();
+    }
+    else
     if (type==255) {
 	print_decXXXX(temp_average);
 	COM_putchar(';');
@@ -526,7 +533,7 @@ void COM_commad_parse (void) {
 		case 'Y':
 			if (COM_hex_parse(3*2)!='\0') { break; }
 			RTC_SetDate(com_hex[2],com_hex[1],com_hex[0]);
-//			COM_print_debug(1);
+			COM_print_debug(100);
 			c='\0';
 			break;
 		case 'H':
@@ -534,7 +541,7 @@ void COM_commad_parse (void) {
 			RTC_SetHour(com_hex[0]);
 			RTC_SetMinute(com_hex[1]);
 			RTC_SetSecond(com_hex[2]);
-//			COM_print_debug(1);
+			COM_print_debug(100);
 			c='\0';
 			break;
 		case 'B':
@@ -550,14 +557,14 @@ void COM_commad_parse (void) {
         case 'M':
             if (COM_hex_parse(1*2)!='\0') { break; }
             CTL_change_mode(com_hex[0]);
-//            COM_print_debug(1);
+            COM_print_debug(100);
             break;
         case 'A':
             if (COM_hex_parse(1*2)!='\0') { break; }
             if (com_hex[0]<TEMP_MIN-1) { break; }
             if (com_hex[0]>TEMP_MAX+1) { break; }
             CTL_set_temp(com_hex[0]);
-//            COM_print_debug(1);
+            COM_print_debug(100);
             break;
         case 'L':
             if (COM_hex_parse(1*2)!='\0') { break; }
