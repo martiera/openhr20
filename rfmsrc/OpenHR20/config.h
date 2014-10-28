@@ -74,7 +74,8 @@ In this file we define only configuration parameters, for example what kind of c
 #endif
 
 // Parameters for the COMM-Port
-#define COM_BAUD_RATE 9600
+//#define COM_BAUD_RATE 9600
+#define COM_BAUD_RATE 1200
 #if THERMOTRONIC!=1 //No serialport implementet yet
 // Note we should only enable of of the following at one time
 /* we support RS232 */
