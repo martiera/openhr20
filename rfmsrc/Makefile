@@ -42,6 +42,8 @@ RFMFLAGS += -DRFM_FREQ_FINE=0.35
 
 default: HR20_rfm_int_sww
 
+hr20:	HR20_original_sww
+
 all: HR20_rfm_int_sww HR20_rfm_int_hww HR20_rfm_ext_sww HR20_original_sww HR20_original_hww HR25_original_sww HR25_rfm_int_sww thermotronic_sww master1
 	 cp OpenHR20/license.txt $(DEST)/
 
