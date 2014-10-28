@@ -151,10 +151,10 @@ void RS_Init(void)
 	// Baudrate
 	//long ubrr_val = ((F_CPU)/(baud*8L)-1);
 //	uint16_t ubrr_val = ((F_CPU)/(COM_BAUD_RATE*8L)-1);
-	uint16_t ubrr_val = ((F_CPU)/(COM_BAUD_RATE*16UL)-1);
+	uint16_t ubrr_val = ((F_CPU)/(COM_BAUD_RATE*8UL)-1);  //if disable clkx2 then 16UL
  
-//		UCSR0A = _BV(U2X0);
-		UCSR0A &= ~(_BV(U2X0));
+		UCSR0A = _BV(U2X0);
+//		UCSR0A &= ~(_BV(U2X0));
 		UBRR0H = (unsigned char)(ubrr_val>>8);
 		UBRR0L = (unsigned char)(ubrr_val & 0xFF);
 		#if defined(_AVR_IOM16_H_) || defined(_AVR_IOM32_H_)
